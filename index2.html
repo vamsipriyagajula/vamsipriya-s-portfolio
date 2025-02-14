@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Your Portfolio</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to external stylesheet -->
+    <style>
+        /* Simple CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f2f2;
+        }
+
+        header {
+            background-color: #333;
+            color: rgb(239, 231, 231);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav {
+            background-color: #444;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 20px;
+        }
+
+        nav a:hover {
+            background-color: #575757;
+        }
+
+        .section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .section p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-top: 20px;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .project {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .project img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
+        .circle-image {
+            width: 200px; /* Set the width */
+            height: 200px; /* Set the height */
+            border-radius: 50%; /* Makes the image circular */
+            object-fit: cover;
+            border: 3px solid #333;
+            overflow: hidden; /* Ensures nothing spills out */
+            
+            justify-content: center;
+            align-items: center;
+            /* Ensures the image covers the whole area */
+        }
+        form {
+    max-width: 400px;
+    margin: auto;
+}
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+button {
+    background: #333;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background: #555;
+}
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 15px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn:first-of-type {
+    background-color: #000000; /* Green for "View Project" */
+    color: white;
+}
+
+.btn:first-of-type:hover {
+    background-color:#555;
+}
+
+.back-btn {
+    background-color:black; /* Red for "Back to Home" */
+    color:white;
+}
+
+.back-btn:hover {
+    background-color:#555;
+}
+.skill {
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: left;
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 25px;
+    margin-bottom: 15px;
+}
+
+.progress {
+    height: 100%;
+    background-color: #28a745;
+    text-align: center;
+    line-height: 25px;
+    font-weight: bold;
+    color: white;
+    transition: width 1s ease-in-out;
+}
+.project {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, opacity 0.3s;
+    opacity: 0.9;
+}
+
+.project:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+}
+/* Initially hide elements */
+.hidden {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* When element is visible, make it appear */
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.hire-section {
+    text-align: center;
+    padding: 50px 20px;
+    background: #333;
+    color: white;
+}
+
+.hi-text {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.name-highlight {
+    color: #fcfcfc; /* Highlight effect */
+}
+
+.hire-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: #28a745;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+}
+
+.hire-btn:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+/* Animation Effect */
+.hire-section.show .hi-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+nav {
+    position: fixed; /* Keeps it fixed at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #444;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    z-index: 1000; /* Ensures it stays above other elements */
+    transition: background 0.3s;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 15px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background-color: #575757;
+    border-radius: 5px;
+}
+
+/* Add padding to the top of body so content doesn't get hidden behind nav */
+body {
+    padding-top: 60px; /* Adjust according to your nav height */
+}
+.hire-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: #007bff;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+}
+
+.hire-btn:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+
+
+    
+
+    </style>
+</head>
+<section id="home" class="section">
+    
+</section>
+
+<body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const hiddenElements = document.querySelectorAll('.hidden');
+        
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, { threshold: 0.2 });
+        
+            hiddenElements.forEach(el => observer.observe(el));
+        });
+        </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const hiddenElements = document.querySelectorAll('.hidden, .hire-section');
+            
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('show');
+                        }
+                    });
+                }, { threshold: 0.2 });
+            
+                hiddenElements.forEach(el => observer.observe(el));
+            });
+            </script>
+        
+
+    
+    
+    <header>
+        
+        <section id="hire-me" class="section">
+            <h2>Hi, I'm Vamsipriya Gajula</h2>
+            
+            <a href="mailto:gajulavamsipriya@gmail.com?subject=Job%20Opportunity&body=Hello%20Vamsipriya,%20I%20am%20interested%20in%20hiring%20you." class="btn hire-btn">Hire Me</a>
+
+
+        </section>
+        
+        
+
+    </header>
+
+    <nav>
+        <a href="#home"> Home</a>
+
+        <a href="#about">About</a>
+        <a href="#skills">skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        
+
+    </nav>
+    
+
+
+    <section id="about" class="section hidden">
+        <h2>About Me</h2>
+        <img src="C:\Users\SRAVANI GAJULA\Desktop\chinni.html\profile.jpg" alt="circle image" width="100" height="100" class="circle-image">
+        
+
+        
+        <p>Hello! I am a passionate web developer with experience in creating user-friendly websites and applications. I specialize in front-end development, but I am always learning new technologies and tools to enhance my skill set.</p>
+    </section>
+    <section id="skills" class="section hidden">
+        <h2>My Skills</h2>
+        <div class="skill hidden">
+            <p>Python</p>
+            <div class="progress-bar">
+                <div class="progress" style="width: 85%;">85%</div>
+            </div>
+        </div>
+        <div class="skill hidden">
+            <p>HTML</p>
+            <div class="progress-bar">
+                <div class="progress" style="width: 95%;">95%</div>
+            </div>
+        </div>
+        <div class="skill hidden">
+            <p>CSS</p>
+            <div class="progress-bar">
+                <div class="progress" style="width: 90%;">90%</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section hidden">
+        <h2>My Projects</h2>
+        <div class="projects">
+            <div class="project hidden">
+                <img src="C:\Users\SRAVANI GAJULA\Desktop\index2\blog.png" alt="Blog Platform">
+                <h3>Blog Website</h3>
+                <p>A fully functional blogging platform where users can create, edit, and publish blog posts.</p>
+                <a href="https://www.blogger.com/" target="_blank" class="btn">View Project</a>
+                <a href="#home" class="btn back-btn">Back to Home</a>
+            </div>
+            <div class="project hidden">
+                <img src="C:\Users\SRAVANI GAJULA\Desktop\index2\ai chess.jpg" alt="AI-Powered Chess Game">
+                <h3>AI-Powered Chess Game</h3>
+                <P>A chess game where users can play against an AI opponent</P>
+                <a href="https://www.chess.com/play/computer/Komodo2" target="_blank" class="btn">View Project</a>
+                <a href="#home" class="btn back-btn">Back to Home</a>
+            </div>
+            <div class="project hidden">
+                <img src="C:\Users\SRAVANI GAJULA\Desktop\index2\passstength.png" alt="Password Strength Tester">
+                <h3>Password Strength Tester</h3>
+                <p>
+                    A web-based tool that evaluates the strength of user-entered passwords</p>
+                    <a href="https://www.passwordmonster.com/" target="_blank" class="btn">View Project</a>
+            <a href="#home" class="btn back-btn">Back to Home</a>
+            </div>
+        </div>
+    </section>
+    
+    
+
+    <section id="contact" class="section">
+        <h2>Contact Me</h2>
+        <form id="contactForm">
+            <input type="text" id="name" placeholder="Your Name" required><br>
+            <input type="email" id="email" placeholder="Your Email" required><br>
+            <textarea id="message" placeholder="Your Message" required></textarea><br>
+            <button type="submit">Send Message</button>
+        </form>
+        <p id="formStatus"></p>
+    </section>
+    
+
+    <footer class="footer">
+        <p>&copy; 2025 Vamsipriya Gajula. All rights reserved.</p>
+    </footer>
+</body>
+</html>
